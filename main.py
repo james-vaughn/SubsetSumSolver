@@ -4,7 +4,7 @@ from functools import lru_cache
 import sys
 
 
-sys.setrecursionlimit(2000)
+sys.setrecursionlimit(1500)
 
 
 def formatSolver(target, nums):
