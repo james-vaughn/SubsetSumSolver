@@ -13,7 +13,7 @@ def formatSolver(target, nums):
 def solve(target, nums):
     @lru_cache(maxsize=None)
     def subsetSum(idx, num):
-        if num < 1 or idx >= len(nums):
+        if idx >= len(nums):
             return frozenset()
         if nums[idx] == num:
             return frozenset([idx])
@@ -22,9 +22,11 @@ def solve(target, nums):
             return with_v | frozenset([idx])
         else:
             return subsetSum(idx + 1, num)
-
-    solution = list(nums[i] for i in subsetSum(0, target))
-    return solution if not solution == [] else None
+    try:
+        solution = list(nums[i] for i in subsetSum(0, target))
+        return solution if not solution == [] else None
+    except Exception as e:
+        print(f"Error solving {target}: {e}")
 
 
 def logResult(results, outputFilename):
@@ -46,8 +48,9 @@ if __name__ == '__main__':
     try:
         with open(args.filename, "r") as file:
             for inputLine in file:
-                line = inputLine.replace(" ", "").split(",")
-                problems.append(list(map(float, line)))
+                line = inputLine.strip().replace(" ", "")
+                if line:
+                    problems.append(list(map(float, line.split(","))))
     except:
         print("""
         Input file not formatted correctly. 
