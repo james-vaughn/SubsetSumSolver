@@ -1,6 +1,10 @@
 from multiprocessing import Pool, cpu_count
 from argparse import ArgumentParser
 from functools import lru_cache
+import sys
+
+
+sys.setrecursionlimit(2000)
 
 
 def formatSolver(target, nums):
