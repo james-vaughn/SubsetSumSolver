@@ -1,4 +1,4 @@
-from decimal import *
+from decimal import Decimal
 from multiprocessing import Pool, cpu_count
 from argparse import ArgumentParser
 from functools import lru_cache
@@ -10,7 +10,7 @@ sys.setrecursionlimit(1500)
 
 def formatSolver(target, nums):
     solution = solve(target, sorted(nums, reverse=True))
-    return f"{target}: {[float(solu) for solu in solution] if solution is not None else 'No solution'}"
+    return f"{target}: {[float(num) for num in solution] if solution is not None else 'No solution'}"
 
 
 # Returns the first solution to the subset sum problem found
