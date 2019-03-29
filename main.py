@@ -1,3 +1,4 @@
+from decimal import *
 from multiprocessing import Pool, cpu_count
 from argparse import ArgumentParser
 from functools import lru_cache
@@ -9,7 +10,7 @@ sys.setrecursionlimit(1500)
 
 def formatSolver(target, nums):
     solution = solve(target, sorted(nums, reverse=True))
-    return f"{target}: {solution}"
+    return f"{target}: {[float(solu) for solu in solution]}"
 
 
 # Returns the first solution to the subset sum problem found
@@ -54,7 +55,7 @@ if __name__ == '__main__':
             for inputLine in file:
                 line = inputLine.strip().replace(" ", "")
                 if line:
-                    problems.append(list(map(float, line.split(","))))
+                    problems.append(list(map(Decimal, line.split(","))))
     except:
         print("""
         Input file not formatted correctly. 
