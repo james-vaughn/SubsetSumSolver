@@ -10,7 +10,7 @@ sys.setrecursionlimit(1500)
 
 def formatSolver(target, nums):
     solution = solve(target, sorted(nums, reverse=True))
-    return f"{target}: {[float(solu) for solu in solution]}"
+    return f"{target}: {[float(solu) for solu in solution] if solution is not None else 'No solution'}"
 
 
 # Returns the first solution to the subset sum problem found
